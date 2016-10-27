@@ -26,6 +26,10 @@ public class Sphere {
     public Sphere(double radio){
         this.setRadio(radio);
     }
+    
+    public Sphere(){
+        this(1.0);
+    }
        
        
        

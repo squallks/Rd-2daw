@@ -23,13 +23,15 @@ public class Cercle {
     }   
     
 //</editor-fold>
-    
-    
+   
     //<editor-fold defaultstate="collapsed" desc="Contructor">
     
     public Cercle(double radio){
     this.setRadio(radio);
 }
+    public Cercle(){
+        this(1.0);
+    }
     
     
     

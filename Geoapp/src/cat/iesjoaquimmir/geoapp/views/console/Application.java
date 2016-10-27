@@ -29,9 +29,9 @@ public class  Application {
                     case 4:
                       Rectangle();
                       break;
-                 /*   case 5:
+                    case 5:
                       Color();
-                      break;*/
+                      break;
         }
             
     }         
@@ -73,16 +73,13 @@ public class  Application {
             System.out.printf("El Perimetro de s1: %.2f %n", r1.getPerimetro());
                 
             }
-         /*   private static void Color(){
             //<editor-fold defaultstate="collapsed" desc="Menu color">
-                
-    
-            public static void Menu(String[] args){
-               Scanner input = new Scanner(System.in);
-            
-                System.out.printf("1- Valores red, blue, green. 2- Hexadecimal. 3- Random");
-                int resp2 = input.nextInt();
-            
+        
+            private static void Color(){
+                 System.out.printf("1- Valores red, blue, green. 2- Hexadecimal. 3- Random");
+                 Scanner input = new Scanner(System.in);
+                 int resp2 = input.nextInt();
+                        
                 switch(resp2){  
                 
                 case 1:
@@ -94,6 +91,12 @@ public class  Application {
                     case 3:
                      Random();
                      break;
+                    case 4:
+                       System.out.printf("El numero de colors es: %d %n", Color.getCounter());
+                       break;
+                    case 5:
+                        System.out.printf("EL numero en RGB es: %s %n", Color.toRGBString());
+                        break;
                 }
           }
                //</editor-fold>   
@@ -102,12 +105,20 @@ public class  Application {
                  System.out.printf("col1 -> r: %d g: %d b: %d %n", col1.getRed(), col1.getGreen(), col1.getBlue());
                 }
             private static void Hex(){
-                   System.out.printf("col -> %s %n", col1.toHexString(true));           
-                   System.out.printf("col -> %s %n%n", col1.toHexString(true));  
+                 Color col2 = Color.fromHexString("#FFFFFF");
+                   System.out.printf("Col2 red: %d green: %d blue: %d %n");
+                   System.out.printf("col -> %s %n", col2.toHexString(false));           
+                   System.out.printf("col -> %s %n%n", col2.toHexString(true));  
                 }
             private static void Random(){
-                   
+                   Color col3 = Color.getRandom();
+                   System.out.printf("El color random es: %d %d %d %n", col3.getRed(), col3.getGreen(), col3.getBlue());
                }
+            private static void RGB(){
+                String col4 = Color.toRGBString();
             }
+            
+            
+            }
+
 //</editor-fold>*/
-}

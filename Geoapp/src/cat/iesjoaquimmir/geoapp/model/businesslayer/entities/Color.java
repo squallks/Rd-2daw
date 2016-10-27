@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package cat.iesjoaquimmir.geoapp.model.businesslayer.entities;
+import java.util.Random;
 
 public class Color {
     
@@ -20,8 +21,9 @@ public class Color {
     //<editor-fold defaultstate="collapsed" desc="Estaticos">
         
         public static final int MAX_VALUE=255;
-        public static final int MIN_VALUE=255;
+        public static final int MIN_VALUE=0;
         private static int counter=0;
+        private Random rnd = new Random();
         
 //</editor-fold>
    
@@ -31,7 +33,7 @@ public class Color {
     
     //<editor-fold defaultstate="collapsed" desc="Metodos">
         
-        //<editor-fold defaultstate="collapsed" desc="seters y geters">
+    //<editor-fold defaultstate="collapsed" desc="seters y geters">
   
     public int getRed() {
         return red;
@@ -63,7 +65,9 @@ public class Color {
         }
         this.blue = blue;
     } 
-        
+    public static int getCounter(){
+            return counter;
+        }
         
         
         
@@ -71,13 +75,16 @@ public class Color {
         
 //</editor-fold>
         
-        //<editor-fold defaultstate="collapsed" desc="Constructores">
+    //<editor-fold defaultstate="collapsed" desc="Constructores">
         
         public Color(int red, int blue, int green) {
             counter++;
             this.setRed(red);
             this.setGreen(green);
             this.setBlue(blue);
+        }
+         public String toHexString(){
+            return toHexString(true);
         }
         
          
@@ -86,23 +93,34 @@ public class Color {
         
         //<editor-fold defaultstate="collapsed" desc="Operadores">
         
-        public static int getCounter(){
-            return counter;
-        }
         
-        public String toRGBString(){
+        
+        public static String toRGBString(){
             throw new UnsupportedOperationException("Not yet implementesd!!");
         }
         
         public String toHexString(boolean upper){
             return String.format(upper ? "#%02X%02X%02X" : "#%02X%02X%02X" , getRed(), getGreen(), getBlue());
         }
-        public String toHexString(){
-            return toHexString(true);
+       
+        public static Color fromHexString(String color){
+            if (color == null){
+                throw new NullPointerException("Es obligatori indicar una cadena de text");
+            }
+            if (!color.matches("^#[0-9A-Fa-f]{6}$")){
+                    throw new IllegalArgumentException(
+                            String.format("El text %s no te format hexadecimal", color));
+            }
+         return new Color (Integer.parseInt(color.substring(1,3) , 16),
+                           Integer.parseInt(color.substring(3,5) , 16) ,
+                           Integer.parseInt(color.substring(5,7) , 16))   ;
         }
         
-        
-        
+        public static Color getRandom(){
+            Random rnd = new Random();
+            return new Color (rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        }
+
         
 //</editor-fold>
         

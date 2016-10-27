@@ -21,6 +21,10 @@ public class Square {
        this.setSide(side);
     }
   
+    public Square(){
+        this(1.0);
+    }
+    
 //</editor-fold>
  
 //<editor-fold defaultstate="collapsed" desc="geters y seters">

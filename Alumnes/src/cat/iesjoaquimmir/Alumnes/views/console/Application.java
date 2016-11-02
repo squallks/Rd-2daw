@@ -11,12 +11,12 @@ public class Application {
      public static void main(String[] args){
             Scanner input = new Scanner(System.in);
             
-                System.out.printf("1- Nada. 2- Nombre. 3- Nombre+Dni. 4- Todo.");
+                System.out.printf("1- NombreyEdad. 2- Nombre. 3- Nombre+Dni. 4- Todo.");
                 int resp = input.nextInt();
             
                        switch(resp){
                     case 1:
-                     Nada();
+                     NombreyEdad();
                      break;
                     case 2:
                       Nombre();
@@ -37,8 +37,13 @@ public class Application {
 //<editor-fold defaultstate="collapsed" desc="Metodes">
      
          
-    private static void Nada(){
-       Alumne al1 = new Alumne();
+    private static void NombreyEdad(){
+      Scanner input = new Scanner(System.in);
+        System.out.printf("Dime tu nombre");
+        String nom = input.next();
+        System.out.printf("Dime tu edad");
+        int edat = input.nextInt();
+        Alumne al1 = new Alumne(nom, edat);
        System.out.printf("%n %s %n ", al1.getSalutacio());
     }
     private static void Nombre(){

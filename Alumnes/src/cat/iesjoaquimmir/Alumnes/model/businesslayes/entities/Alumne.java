@@ -11,9 +11,9 @@ public class Alumne {
             private int edat;
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Estatics">
-          private static String nombre = "Anonymous";
-          private static String dnii = "0000000-A";
-          private static int edad = 99;
+          private static final String nombre = "Anonymous";
+          private static final String dnii = "0000000-A";
+          private static final int edad = 99;
             
 //</editor-fold>
         
@@ -57,8 +57,10 @@ public class Alumne {
             public Alumne(String nom){
                 this(nom, dnii);
             }
-            public Alumne(){
-                this(nombre);
+
+
+    public Alumne(String nom, int edat){
+                this(nom, dnii, edat);
             }
             
             

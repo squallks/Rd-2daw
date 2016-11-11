@@ -14,7 +14,7 @@ public class Application {
      public static void main(String[] args){
             Scanner input = new Scanner(System.in);
             
-                System.out.printf("1- NombreyEdad. 2- Nombre. 3- Nombre+Dni. 4- Nombre completo. 5- Todo");
+                System.out.printf("1- NombreyEdad. 2- Nombre. 3- Nombre+Dni. 4- Nombre completo. 5- Todo. 6-Telefonos. 7-Modulos");
                 int resp = input.nextInt();
             
                        switch(resp){
@@ -170,7 +170,10 @@ public class Application {
               } else{
                   
               }  al9.setModul(modul);
-                  System.out.printf("Tu/s telefono/s es/son: %s %n", al9.getModul());
+              int i;
+                   for (i = 0; i < modul.size(); i++){
+                  System.out.printf("Tu modulo es: %s %n ", al9.getModul().get(i).getNom());
+                   }
                 
               }while(resp2 ==  1);
       }

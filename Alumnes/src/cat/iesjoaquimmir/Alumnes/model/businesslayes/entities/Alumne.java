@@ -65,10 +65,10 @@ public class Alumne {
             public void setModul(ArrayList<Moduls> modul) {
                this.modul = modul;
             }
-            public ArrayList getTelefon(){
+            public ArrayList<String> getTelefon(){
                 return telefon;
             }
-            public ArrayList getModul() {
+            public ArrayList<Moduls> getModul() {
                 return modul;
             }
             public Domicili getDomicilio() {

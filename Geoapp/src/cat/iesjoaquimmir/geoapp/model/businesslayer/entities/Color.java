@@ -6,7 +6,7 @@
 package cat.iesjoaquimmir.geoapp.model.businesslayer.entities;
 import java.util.Random;
 
-public class Color {
+public abstract class Color {
     
     //<editor-fold defaultstate="collapsed" desc="Atributs">
     
@@ -95,8 +95,11 @@ public class Color {
         
         
         
-        public static String toRGBString(){
-            throw new UnsupportedOperationException("Not yet implementesd!!");
+        public String toRGBString(boolean upper){
+           return String.format(upper ? "RGB: %d" : " rgb: %d", getRed(),getGreen(),getBlue());
+        }
+        public String toRGBString(){
+            return toRGBString(true);
         }
         
         public String toHexString(boolean upper){
@@ -111,20 +114,23 @@ public class Color {
                     throw new IllegalArgumentException(
                             String.format("El text %s no te format hexadecimal", color));
             }
-         return new Color (Integer.parseInt(color.substring(1,3) , 16),
+         return new AlphaColor (Integer.parseInt(color.substring(1,3) , 16),
                            Integer.parseInt(color.substring(3,5) , 16) ,
                            Integer.parseInt(color.substring(5,7) , 16))   ;
         }
         
         public static Color getRandom(){
             Random rnd = new Random();
-            return new Color (rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+            return new AlphaColor (rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         }
-
         
-//</editor-fold>
+        
+
+       //</editor-fold>
         
               
 //</editor-fold>
+
+    
 
 }

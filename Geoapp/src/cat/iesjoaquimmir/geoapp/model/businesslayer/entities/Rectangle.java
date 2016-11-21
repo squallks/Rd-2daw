@@ -1,7 +1,7 @@
 package cat.iesjoaquimmir.geoapp.model.businesslayer.entities;
 
 
-public class Rectangle {
+public class Rectangle  extends Shape{
 
 //<editor-fold defaultstate="collapsed" desc="Atributs">
    private double base = 10.0;
@@ -35,9 +35,16 @@ public class Rectangle {
    
 //<editor-fold defaultstate="collapsed" desc="Constructor">
     
-    public Rectangle (double base, double altura){
+    public Rectangle(double base, double altura, AlphaColor backgroundcolor, AlphaColor foregroundcolor) {
+        super(backgroundcolor, foregroundcolor);
         this.setBase(base);
         this.setAltura(altura);
+    } 
+    
+    
+    public Rectangle (double base, double altura){
+        this(base,altura,null,null);
+        
                
     }
     

@@ -1,7 +1,7 @@
 package cat.iesjoaquimmir.geoapp.model.businesslayer.entities;
 
 
-public class Sphere {
+public class Sphere extends Shape{
     //<editor-fold defaultstate="collapsed" desc="Atributs">
       private double radio;
        
@@ -23,16 +23,17 @@ public class Sphere {
       
     //<editor-fold defaultstate="collapsed" desc="Constructor">
        
-    public Sphere(double radio){
+    public Sphere(double radio, AlphaColor backgroundcolor, AlphaColor foregroundcolor) {
+        super(backgroundcolor, foregroundcolor);
         this.setRadio(radio);
+    }   
+    public Sphere(double radio){
+        this(radio,null,null);
     }
-    
     public Sphere(){
         this(1.0);
     }
-       
-       
-       
+    
 //</editor-fold>
           
     //<editor-fold defaultstate="collapsed" desc="Operadores">

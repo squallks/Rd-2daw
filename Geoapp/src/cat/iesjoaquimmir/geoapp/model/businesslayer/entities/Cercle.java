@@ -6,7 +6,7 @@
 package cat.iesjoaquimmir.geoapp.model.businesslayer.entities;
 
 
-public class Cercle {
+public class Cercle extends Shape{
     
 //<editor-fold defaultstate="collapsed" desc="Atributs">
     private double radio;
@@ -26,8 +26,13 @@ public class Cercle {
    
     //<editor-fold defaultstate="collapsed" desc="Contructor">
     
+    public Cercle(double radio, AlphaColor backgroundcolor, AlphaColor foregroundcolor) {
+        super(backgroundcolor, foregroundcolor);
+        this.setRadio(radio);
+    } 
+    
     public Cercle(double radio){
-    this.setRadio(radio);
+    this(radio,null,null);
 }
     public Cercle(){
         this(1.0);

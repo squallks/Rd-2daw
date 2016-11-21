@@ -5,6 +5,7 @@ import cat.iesjoaquimmir.geoapp.model.businesslayer.entities.Cercle;
 import cat.iesjoaquimmir.geoapp.model.businesslayer.entities.Sphere;
 import cat.iesjoaquimmir.geoapp.model.businesslayer.entities.Rectangle;
 import cat.iesjoaquimmir.geoapp.model.businesslayer.entities.Color;
+import cat.iesjoaquimmir.geoapp.model.businesslayer.entities.AlphaColor;
 import java.util.Scanner;
 
 public class  Application {
@@ -37,46 +38,117 @@ public class  Application {
     }         
     
 //</editor-fold>
+    
 //<editor-fold defaultstate="collapsed" desc="Operadores 1º menu">
             private static void Square(){
-                 Square c1 = new Square(10.0);
+                Scanner input = new Scanner(System.in);
+                System.out.printf("Dime tu tamaño");
+                int side = input.nextInt();
+                System.out.printf("Dime tu red del backgroun");
+                int red = input.nextInt();
+                 System.out.printf("Dime tu green del backgroun");
+                int green = input.nextInt();
+                System.out.printf("Dime tu blue del backgroun");
+                int blue = input.nextInt();
+                AlphaColor co1 = new AlphaColor(red,green,blue);
+                System.out.printf("Dime tu red del foregroundcolor");
+                int red2 = input.nextInt();
+                 System.out.printf("Dime tu green del foregroundcolor");
+                int green2 = input.nextInt();
+                System.out.printf("Dime tu blue del foregroundcolor");
+                int blue2 = input.nextInt();
+                AlphaColor co2 = new AlphaColor(red2,green2,blue2);
+                Square c1 = new Square(side,co1,co2);
              
-                 System.out.printf("El costat de c1: %.2f %n", c1.getSide());
-                 System.out.printf("El Area de c1: %.2f %n", c1.getArea());
-                 System.out.printf("El Perimetre de c1: %.2f %n", c1.getPerimeter());
-                
-                
+//                 System.out.printf("El costat de c1: %.2f %n", c1.getSide());
+//                 System.out.printf("El Area de c1: %.2f %n", c1.getArea());
+//                 System.out.printf("El Perimetre de c1: %.2f %n", c1.getPerimeter());
+//                 System.out.printf("El background es: %s %n", c1.getBackgroundcolor().toHexString());
+//                 System.out.printf("El foreground es: %s %n", c1.getForegroundcolor().toHexString());
+//                 System.out.printf("La opacidad de tu cuadrado es de: %.2f %n", co1.getAlpha());
+                 System.out.printf("%s", c1.toString());
             }
             private static void Cercle(){
-            
-            Cercle c2 = new Cercle(10.0);
+              Scanner input = new Scanner(System.in);
+                System.out.printf("Dime tu red del backgroun");
+                int red = input.nextInt();
+                System.out.printf("Dime tu green del backgroun");
+                int green = input.nextInt();
+                System.out.printf("Dime tu blue del backgroun");
+                int blue = input.nextInt();
+                AlphaColor co1 = new AlphaColor(red,green,blue);
+                System.out.printf("Dime tu red del foregroundcolor");
+                int red2 = input.nextInt();
+                 System.out.printf("Dime tu green del foregroundcolor");
+                int green2 = input.nextInt();
+                System.out.printf("Dime tu blue del foregroundcolor");
+                int blue2 = input.nextInt();
+                AlphaColor co2 = new AlphaColor(red2,green2,blue2);
+                Cercle c2 = new Cercle(10.0, co1, co2);
             
             System.out.printf("El radi de c2: %.2f %n", c2.getRadio());
             System.out.printf("El Area de c2: %.2f %n", c2.getAreac());
             System.out.printf("El Perimetre de c2: %.2f %n", c2.getPerimeterc());
-    }
+            System.out.printf("El bacground es: %s %n", c2.getBackgroundcolor().toHexString());
+            System.out.printf("El bacground es: %s %n", c2.getForegroundcolor().toHexString());
+            System.out.printf("La opacidad de tu cuadrado es de: %.2f %n", co1.getAlpha());
+            }
             private static void Sphere(){
-            Sphere s1 = new Sphere(8.5);    
-                
+             Scanner input = new Scanner(System.in);
+                System.out.printf("Dime tu red del backgroun");
+                int red = input.nextInt();
+                System.out.printf("Dime tu green del backgroun");
+                int green = input.nextInt();
+                System.out.printf("Dime tu blue del backgroun");
+                int blue = input.nextInt();
+                AlphaColor co1 = new AlphaColor(red,green,blue);
+                System.out.printf("Dime tu red del foregroundcolor");
+                int red2 = input.nextInt();
+                 System.out.printf("Dime tu green del foregroundcolor");
+                int green2 = input.nextInt();
+                System.out.printf("Dime tu blue del foregroundcolor");
+                int blue2 = input.nextInt();
+                AlphaColor co2 = new AlphaColor(red2,green2,blue2);
+                Sphere s1 = new Sphere(8.0,co1,co2);
+                    
             System.out.printf("El radi de s1: %.2f %n", s1.getRadio());
             System.out.printf("El Area de s1: %.2f %n", s1.getAreas());
             System.out.printf("El Volumen de s1: %.2f %n", s1.getVolumens());
+            System.out.printf("El bacground es: %s %n", s1.getBackgroundcolor().toHexString());
+            System.out.printf("El bacground es: %s %n", s1.getForegroundcolor().toHexString());
+            System.out.printf("La opacidad de tu cuadrado es de: %.2f %n", co1.getAlpha());
             
             }
             private static void Rectangle(){
-                
-            Rectangle r1 = new Rectangle(5.0 , 8.0);
-              
+            Scanner input = new Scanner(System.in);
+            System.out.printf("Dime tu red del backgroun");
+                int red = input.nextInt();
+                 System.out.printf("Dime tu green del backgroun");
+                int green = input.nextInt();
+                System.out.printf("Dime tu blue del backgroun");
+                int blue = input.nextInt();
+                AlphaColor co1 = new AlphaColor(red,green,blue);
+                System.out.printf("Dime tu red del foregroundcolor");
+                int red2 = input.nextInt();
+                 System.out.printf("Dime tu green del foregroundcolor");
+                int green2 = input.nextInt();
+                System.out.printf("Dime tu blue del foregroundcolor");
+                int blue2 = input.nextInt();
+                AlphaColor co2 = new AlphaColor(red2,green2,blue2);
+                Rectangle r1 = new Rectangle(5.0 , 8.0, co1, co2);
             System.out.printf("La base de s1: %.2f %n", r1.getBase());
             System.out.printf("La Altura de s1: %.2f %n", r1.getAltura());
             System.out.printf("El Area de s1: %.2f %n", r1.getArea());
             System.out.printf("El Perimetro de s1: %.2f %n", r1.getPerimetro());
+            System.out.printf("El background es: %s %n", r1.getBackgroundcolor().toHexString());
+            System.out.printf("El foreground es: %s %n", r1.getForegroundcolor().toHexString());
+            System.out.printf("La opacidad de tu cuadrado es de: %.2f %n", co1.getAlpha());
                 
             }
             //<editor-fold defaultstate="collapsed" desc="Menu color">
         
             private static void Color(){
-                 System.out.printf("1- Valores red, blue, green. 2- Hexadecimal. 3- Random");
+                 System.out.printf("1- Valores red, blue, green. 2- Hexadecimal. 3- Random. 4-RGB.");
                  Scanner input = new Scanner(System.in);
                  int resp2 = input.nextInt();
                         
@@ -95,13 +167,13 @@ public class  Application {
                        System.out.printf("El numero de colors es: %d %n", Color.getCounter());
                        break;
                     case 5:
-                        System.out.printf("EL numero en RGB es: %s %n", Color.toRGBString());
+                        RGB();
                         break;
                 }
           }
                //</editor-fold>   
             private static void Normal(){
-                 Color col1 = new Color(125,125,Color.MAX_VALUE);
+                 Color col1 = new AlphaColor(125,125,Color.MAX_VALUE);
                  System.out.printf("col1 -> r: %d g: %d b: %d %n", col1.getRed(), col1.getGreen(), col1.getBlue());
                 }
             private static void Hex(){
@@ -115,10 +187,12 @@ public class  Application {
                    System.out.printf("El color random es: %d %d %d %n", col3.getRed(), col3.getGreen(), col3.getBlue());
                }
             private static void RGB(){
-                String col4 = Color.toRGBString();
+                AlphaColor col4 = new AlphaColor(25,5,10);
+                System.out.printf("El Alphacolor en RGB es: %s %n",col4.toRGBString());
+                 
             }
             
             
             }
 
-//</editor-fold>*/
+//</editor-fold>

@@ -149,10 +149,37 @@ public abstract class Usuaris {
              }
           
              
+             @Override
+             public String toString() {
+                return String.format("Nom: %s Cognom: %s Cognom2: %s", getNom(), getCognom1(), getCognom2());
+            }
+             
+            
+                          
+            @Override
+            public boolean equals(Object obj) {
+              if(obj instanceof Usuaris){
+                  Usuaris tmpUsuaris = (Usuaris) obj;
+                    if(this.nom.equals(tmpUsuaris.nom) && this.cognom1.equals(tmpUsuaris.cognom1) && this.cognom2.equals(tmpUsuaris.cognom2)){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }else{
+                    return false;}
+                }
+            
+            
+            
 //</editor-fold>
         
 //</editor-fold>
+
+    
+
+
+
       
-     
-             
 }
+             
+

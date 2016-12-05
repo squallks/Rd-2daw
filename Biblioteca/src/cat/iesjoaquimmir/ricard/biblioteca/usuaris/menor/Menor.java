@@ -23,15 +23,7 @@ public class Menor extends Usuaris{
         this.tutor = tutor;
     }
     
-    protected boolean isAdult() {
-        return false;
-    }
 
-    
-    protected boolean isVIP() {
-        return tutor.isPremium();
-    }
-    
     
 //</editor-fold>
     
@@ -48,20 +40,44 @@ public class Menor extends Usuaris{
     
     //<editor-fold defaultstate="collapsed" desc="Operadors">
     
+
+    protected boolean isAdult() {
+        return false;
+    }
+
+    
+    protected boolean isVIP() {
+        return tutor.isPremium();
+    }
     
     
-//      @Override
-//    protected boolean isPremium() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     
+    @Override
+    public String toString() {
+        return String.format("%s Tutor: %s%n", super.toString(), tutor.getNom());
+    }
     
-    
+   
+    @Override
+    public boolean equals(Object obj) {
+      if(obj instanceof Menor){
+           Menor tmpMenor = (Menor) obj;
+        if(super.equals(tmpMenor) && this.tutor.equals(tmpMenor.tutor)){
+                    return true;
+                }else{
+                    return false;
+                     }
+             }else{
+                return false;
+                 }
+            }  
+ 
     
     
 //</editor-fold>
     
  //</editor-fold>   
+
 
     
 

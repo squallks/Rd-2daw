@@ -51,6 +51,13 @@ public class Adult extends Usuaris{
 //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Metodes">
+    public String Vipre(){
+        if(isPremium() == true){
+          return String.format("Si, es premium");
+        }else{
+           return String.format("No, no es premium");
+        }
+    }
     
     @Override
     protected boolean isVIP() {
@@ -64,7 +71,25 @@ public class Adult extends Usuaris{
     }
     
     
+    @Override
+    public String toString() {
+        return String.format("%s Dni: %s Premium: %s ", super.toString(), getDni(), Vipre());
+    }  
     
+
+    @Override
+    public boolean equals(Object obj) { 
+        if(obj instanceof Adult){
+           Adult tmpAdult = (Adult) obj;
+        if(super.equals(tmpAdult) && this.dni.equals(tmpAdult.dni)){
+                    return true;
+                }else{
+                    return false;
+                     }
+             }else{
+                return false;
+                 }
+            }    
     
 //</editor-fold>
   
@@ -74,15 +99,6 @@ public class Adult extends Usuaris{
     
 //</editor-fold>
 
-    
-
-    
-
-
-
-
-
-
-    
+   
     
 }

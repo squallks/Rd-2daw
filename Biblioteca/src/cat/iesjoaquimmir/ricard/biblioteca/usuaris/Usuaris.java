@@ -11,7 +11,7 @@ public abstract class Usuaris {
         private String nom;
         private String cognom1;
         private String cognom2;
-        private ArrayList<Articles> articles = new ArrayList<>();
+        private ArrayList<Articles> articles;
         
 //</editor-fold>
 
@@ -53,6 +53,16 @@ public abstract class Usuaris {
 //</editor-fold>
         //<editor-fold defaultstate="collapsed" desc="Constructor">
         
+         private Usuaris(String nom, String cognom1, String cognom2, ArrayList<Articles> article){
+              this.setNom(nom);
+              this.setCognom1(cognom1);
+              this.setCognom2(cognom2);
+              this.setArticles(articles);
+              
+          }   
+            
+            
+            
           public Usuaris(String nom, String cognom1, String cognom2)  {
               this.setNom(nom);
               this.setCognom1(cognom1);
@@ -125,17 +135,17 @@ public abstract class Usuaris {
              }
             
              public boolean teArticle(Articles art){
-                 if(articles.contains(art)){
-                     return false;
-                 }else{
+                 if(getArticles().contains(art)){
                      return true;
+                 }else{
+                     return false;
                  }
                  
              }
              
              public void agafaArticle(Articles art){
                  if(teArticle(art) == false){
-                        articles.add(art);
+                        getArticles().add(art);
                     }else{
                      String.format("Ya tienes ese producto");
                  }
@@ -151,7 +161,7 @@ public abstract class Usuaris {
              
              @Override
              public String toString() {
-                return String.format("Nom: %s Cognom: %s Cognom2: %s", getNom(), getCognom1(), getCognom2());
+                return String.format("Nom: %s%n Cognom: %s%n Cognom2: %s%n", getNom(), getCognom1(), getCognom2());
             }
              
             

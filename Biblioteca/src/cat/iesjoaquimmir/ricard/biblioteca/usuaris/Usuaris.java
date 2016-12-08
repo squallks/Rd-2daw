@@ -53,22 +53,17 @@ public abstract class Usuaris {
 //</editor-fold>
         //<editor-fold defaultstate="collapsed" desc="Constructor">
         
-         private Usuaris(String nom, String cognom1, String cognom2, ArrayList<Articles> article){
-              this.setNom(nom);
-              this.setCognom1(cognom1);
-              this.setCognom2(cognom2);
-              this.setArticles(articles);
-              
-          }   
+       private Usuaris(String nom, String cognom1, String cognom2, ArrayList<Articles> articles) {
+        this.nom = nom;
+        this.cognom1 = cognom1;
+        this.cognom2 = cognom2;
+        this.articles = articles;
+}
+     
             
-            
-            
-          public Usuaris(String nom, String cognom1, String cognom2)  {
-              this.setNom(nom);
-              this.setCognom1(cognom1);
-              this.setCognom2(cognom2);
-              
-          }
+       public Usuaris(String nom, String cognom1, String cognom2)  {
+            this(nom, cognom1, cognom2, new ArrayList<>());
+         }
             
             
 //</editor-fold>
@@ -83,7 +78,7 @@ public abstract class Usuaris {
                                 //es adulto
                                 if(isVIP() == true){
                                         //adulto y es premium
-                                        if(articles.size()<4){
+                                        if(getArticles().size()<4){
                                             //no tiene 4
                                             return true;
                                         }else{
@@ -92,7 +87,7 @@ public abstract class Usuaris {
                                           }
                                 }else{
                                         //adulto y no es premium
-                                        if(articles.size()<2){
+                                        if(getArticles().size()<2){
                                            //no tiene 2
                                              return true;
                                        }else{
@@ -104,7 +99,7 @@ public abstract class Usuaris {
                     //no es adulto
                             if(isVIP() == true){
                                  //menor y tutor premium
-                                                if(articles.size()<4){
+                                                if(getArticles().size()<4){
                                                     //si no tiene 4 articulos pero si tiene el articulo la categoria adulta
                                                     if(art.getCategoria().isAdult() == true){
                                                         return false;
@@ -118,7 +113,7 @@ public abstract class Usuaris {
                                                   }
                                         }else{
                                                 //menor y tutor normal
-                                                if(articles.size()<2){
+                                                if(getArticles().size()<2){
                                                    //no tiene 2 pero la categoria es de adulto
                                                    if(art.getCategoria().isAdult() == true){
                                                         return false;
@@ -153,8 +148,8 @@ public abstract class Usuaris {
              
              public void retornaArticle(Articles art){
                  
-                 if(articles.contains(art)){
-                        articles.remove(art);
+                 if(getArticles().contains(art)){
+                        getArticles().remove(art);
                 }
              }
           

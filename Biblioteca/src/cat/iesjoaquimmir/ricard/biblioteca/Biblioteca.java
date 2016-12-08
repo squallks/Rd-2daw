@@ -78,13 +78,15 @@ public class Biblioteca {
         
         
         
-        System.out.printf("Estamos mirando si lo puedes coger %s%n", usuariPremium.potAgafarArticle(a5));
+       System.out.printf("Estamos mirando si lo puedes coger %s%n", usuariPremium.potAgafarArticle(a5));
         if(usuariPremium.potAgafarArticle(a5) == true){
             if(usuariPremium.teArticle(a5) == false){
                 usuariPremium.agafaArticle(a5);
                 System.out.printf("El usuario ha cogido el articulo%n %s%n",a5.toString());
-                System.out.printf("El usuario $s$n tiene lso siegientes articulos %s", usuariPremium.getNom(), usuariPremium.getArticles());
+                System.out.printf("El usuario %s%n tiene lso siegientes articulos %s", usuariPremium.getNom(), usuariPremium.getArticles());
             }
+        }else{
+             System.out.printf("Ni lo puede coger");
         }
         
         System.out.printf("Estamos mirando si lo puedes coger %s%n", usuariMenorPremium.potAgafarArticle(a3));
@@ -92,7 +94,7 @@ public class Biblioteca {
                    if(usuariMenorPremium.teArticle(a3) == false){
                        usuariMenorPremium.agafaArticle(a3);
                        System.out.printf("El usuario ha cogido el articulo%n %s%n",a3.toString());
-                       System.out.printf("El usuario $s$n tiene lso siegientes articulos %s", usuariMenorPremium.getNom(), usuariMenorPremium.getArticles());
+                       System.out.printf("El usuario %s%n tiene lso siegientes articulos %s", usuariMenorPremium.getNom(), usuariMenorPremium.getArticles());
                    }
                }else{
                 System.out.printf("No lo puede coger");
@@ -105,7 +107,12 @@ public static void Retorno(){
                     
                 }
      
-
+//para printar articulos
+// System.out.printf("%n--Articulos que tenemos disponibles--%n");
+//        
+//            for  (int x=0;x<articles.size(); x++){
+//                System.out.printf("%n---Articulo: %d---%n%s",x+1,articles.get(x));
+//}
         
         
 }

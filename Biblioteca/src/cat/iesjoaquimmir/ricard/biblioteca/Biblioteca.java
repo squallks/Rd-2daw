@@ -16,107 +16,233 @@ import cat.iesjoaquimmir.ricard.biblioteca.usuaris.Usuaris;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class Biblioteca {
+   //<editor-fold defaultstate="collapsed" desc="Comentarios">
+   //Seran los menus, el progrma se cierra al salir, 
+    //que tendra que devolver al biblioteca test un false para que se cierre el inici
+    //en articles hay un nuevo atributo"cogido" es para identificar si 
+    //dicho articulo esta cogido o no
+    //es un int de 2 posibilidades 1 o 2(esta controlado en el set)
+//</editor-fold>
+          
+    //<editor-fold defaultstate="collapsed" desc="Atributs">
+     private ArrayList<Articles> articles = new ArrayList<>();
+     private ArrayList<Usuaris> usuaris = new ArrayList<>();
+    
+//</editor-fold>
 
- 
-    public static void main(String[] args) {
+    //<editor-fold defaultstate="collapsed" desc="Metodes">
+    
+    //<editor-fold defaultstate="collapsed" desc="getters setters">
+    
+            public ArrayList<Articles> getArticles() {
+                return articles;
+            }
+
+            public void setArticles(ArrayList<Articles> articles) {
+                this.articles = articles;
+            }
+
+            public ArrayList<Usuaris> getUsuaris() {
+                return usuaris;
+            }
+
+            public void setUsuaris(ArrayList<Usuaris> usuaris) {
+                this.usuaris = usuaris;
+            }
   
-  
- 
-        ArrayList<Usuaris> usuarios = new ArrayList<>();
-               
-        Adult usuariPremium = new Adult("Pepe", "Carrasco", "Coronado","498878974K", true);
-        usuarios.add(usuariPremium);
-        Adult usuariNormal = new Adult("Paco", "Soler", "Picasso","498878214M", false);
-        usuarios.add(usuariNormal);
-        Menor usuariMenorPremium = new Menor("Pedro", "Garcia", "Saez", usuariPremium);
-        usuarios.add(usuariMenorPremium);
-        Menor usuariMenorNormal = new Menor("Paulo", "Lopez", "Moliere", usuariNormal);
-        usuarios.add(usuariMenorNormal);
-        System.out.printf("%s", usuariPremium.toString());
-        System.out.printf("%s", usuariNormal.toString());
-        System.out.printf("%s", usuariMenorPremium.toString());
-        System.out.printf("%s", usuariMenorNormal.toString());
-       
-       
-        
-       
-        Prestam(usuariPremium,usuariMenorPremium);
-        
-        
-  }
-        
- 
-      
- 
      
-                
- public static void Prestam(Usuaris usuariPremium, Usuaris usuariMenorPremium){
+     
+//</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Constructor">
+    
+          Biblioteca(ArrayList<Usuaris> usuaris, ArrayList<Articles> articles) {
+             this.articles = articles;
+             this.usuaris = usuaris;
+          }
+    
+    
+    
+//</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Operadors">
+          
+        boolean inici() {
+           Scanner input = new Scanner(System.in);
+            
+                System.out.printf("1- Agafar. 2- Retornar. 3- Mostrar Usuaris. 4- Mostrar Articles. 5- Salir");
+                int resp = input.nextInt();
+            
+                switch(resp){
+                     case 1:
+                        Agafar();
+                        return true;
+                     case 2:
+                         Retornar();
+                        return true;
+                     case 3:
+                         Usuaris();
+                         return true;
+                     case 4:
+                         Articles();
+                         return true;
+                     }
+                       return false;
+        }
+        
+          private void Agafar(){
+              //Muestro todos los usuarios
+              System.out.printf("1º te mostraremos los usuarios%n");
+              for(int i=0; i<getUsuaris().size(); i++){
+                System.out.printf("%n---Usuarios: %d---%n%s",i,getUsuaris().get(i).getNom());
+              }
+              //Seleccionamos usuario
+              System.out.printf("Pon el numero del usuario que desea coger un articulo");
+               Scanner input = new Scanner(System.in);
+               int usu = input.nextInt();
              
-       ArrayList<Articles> articles = new ArrayList<>();
-     
-        Cd a0 = new Cd("Mis grandes éxitos", "Luis Miguel", Categoria.B, 65,"04900009");
-        articles.add(a0);
-        System.out.printf("%s %n", a0.toString());
-        DvD a1 = new DvD("Bamby","Walt Disney", Categoria.A, 89,"90843089");
-        articles.add(a1);
-        System.out.printf("%s %n", a1.toString());
-        DvD a2 = new DvD("Crepusculo","Warner", Categoria.B, 129,"480980983");
-        articles.add(a2);
-        System.out.printf("%s %n", a2.toString());
-        Llibres a3 = new Llibres("Ulises","James Joyce", Categoria.C, 456,"940943322");
-        articles.add(a3);
-        System.out.printf("%s %n", a3.toString());
-        Llibres a4 = new Llibres("Tina Super Bruixa","Enid Blyton", Categoria.B, 456,"342090233");
-        articles.add(a4);
-        System.out.printf("%s %n", a4.toString());
-        Revista a5 = new Revista("Patufet","Ed. Infantil", Categoria.A, 87,"80002122");
-        articles.add(a5);
-        System.out.printf("%s %n", a5.toString());
-
-        
-        
-        
-       System.out.printf("Estamos mirando si lo puedes coger %s%n", usuariPremium.potAgafarArticle(a5));
-        if(usuariPremium.potAgafarArticle(a5) == true){
-            if(usuariPremium.teArticle(a5) == false){
-                usuariPremium.agafaArticle(a5);
-                System.out.printf("El usuario ha cogido el articulo%n %s%n",a5.toString());
-                System.out.printf("El usuario %s%n tiene lso siegientes articulos %s", usuariPremium.getNom(), usuariPremium.getArticles());
-            }
-        }else{
-             System.out.printf("Ni lo puede coger");
-        }
-        
-        System.out.printf("Estamos mirando si lo puedes coger %s%n", usuariMenorPremium.potAgafarArticle(a3));
-            if(usuariMenorPremium.potAgafarArticle(a3) == true){
-                   if(usuariMenorPremium.teArticle(a3) == false){
-                       usuariMenorPremium.agafaArticle(a3);
-                       System.out.printf("El usuario ha cogido el articulo%n %s%n",a3.toString());
-                       System.out.printf("El usuario %s%n tiene lso siegientes articulos %s", usuariMenorPremium.getNom(), usuariMenorPremium.getArticles());
-                   }
-               }else{
-                System.out.printf("No lo puede coger");
-            }
-        }
-     
-     
-public static void Retorno(){
-                    
-                    
+               //Mostramos articulos disponibles
+               System.out.printf("Estos son los articulos disponibles%n");
+                    for(int i=0; i<getArticles().size(); i++){
+                        if(getArticles().get(i).getCogido()== 0)
+                      System.out.printf("%n---Articles: %d---%n%s",i,getArticles().get(i).getTitol());
+                    }
+              //seleccionamos el articulo
+              System.out.printf("Pon el numero del articulo que desea coger");
+              int art = input.nextInt();
+              
+               
+              //1º miramos si el articulo en cuestion esta cogido mirando el atributo "cogido"
+              //de articulos, si es 1 esta cogido, si es 0, se puede coger
+              if (getArticles().get(art).getCogido() == 0){
+                  //si no esta cogido
+                if(getUsuaris().get(usu).potAgafarArticle(getArticles().get(art)) == true){
+                    //si lo puede coger
+                       if(getUsuaris().get(usu).teArticle(getArticles().get(art)) == false){
+                           //si no lo tiene cogido ya
+                           getUsuaris().get(usu).agafaArticle(getArticles().get(art));
+                           System.out.printf("El usuario ha cogido el articulo%n %s%n",getArticles().get(art).toString());
+                         }else{
+                           //ya lo tiene
+                         System.out.printf("No lo puede coger");
+                       }
+                   }else{
+                    //no lo puede coger
+                    System.out.printf("No lo puede coger");
                 }
-     
-//para printar articulos
-// System.out.printf("%n--Articulos que tenemos disponibles--%n");
-//        
-//            for  (int x=0;x<articles.size(); x++){
-//                System.out.printf("%n---Articulo: %d---%n%s",x+1,articles.get(x));
-//}
-        
+              }else{
+                  //ya esta cogido
+                  System.out.printf("Este articulo ya esta cogido");
+              }
+              
+              
+              
+              
+          }
+          
+          private void Retornar(){
+              //Mostarmos usuarios
+              System.out.printf("1º te mostraremos los usuarios%n");
+              for(int i=0; i<getUsuaris().size(); i++){
+                System.out.printf("%n---Usuarios: %d---%n%s",i,getUsuaris().get(i).getNom());
+              }
+              //Seleccionamos usuarios
+              System.out.printf("Pon el numero del usuario que desea devolver un articulo");
+               Scanner input = new Scanner(System.in);
+               int usu = input.nextInt();
+               
+               //Comprobamos si el usuario no tiene ningun articulo
+               if(getUsuaris().get(usu).getArticles().isEmpty()==true){
+                   //El usuario no tiene ningun articulo
+                    System.out.printf("El usuari no te cap article");
+               }else{
+                   //Si tiene algun articulo
+                    System.out.printf("Te muestro los artrticulos que tiene%n");
+                    for(int i=0; i<getUsuaris().get(usu).getArticles().size(); i++){
+                      System.out.printf("%n---Article: %d---%n%s",i,getUsuaris().get(usu).getArticles().get(i).getTitol());
+                    }
+                    //seleccionamos el articulo que queremos devolver
+                    System.out.printf("Pon el numero del articulo que desea devolver");
+                    int art = input.nextInt();
+                   //lo devolvemos
+                    getUsuaris().get(usu).retornaArticle(getUsuaris().get(usu).getArticles().get(art));
+                    System.out.printf("El articulo ha sido devuelto");
+               }
+              
+          }
+          
+          private void Usuaris(){
+              System.out.printf("Estos son los usuarios%n");
+              for(int i=0; i<getUsuaris().size(); i++){
+                System.out.printf("%n---Usuarios: %d---%n%s",i,getUsuaris().get(i).getNom());
+              }
+              
+              
+          }
+          
+          private void Articles(){
+              
+              Scanner input = new Scanner(System.in);
+            
+                System.out.printf("1- Articles Agafats. 2- Articles Disponibles. 3- Tots els Articles");
+ 
+                int resp2 = input.nextInt();
+            
+                switch(resp2){
+                     case 1:
+                        Agafats();
+                        break;
+                     case 2:
+                         Dispo();
+                         break;
+                     case 3:
+                         Tots();
+                         break;
+              
+                            }
+          }
+          //<editor-fold defaultstate="collapsed" desc="Menu del metodo Articles">
+          
+                private void Agafats(){
+                    System.out.printf("Estos son los articulos cogidos%n");
+                    for(int i=0; i<getArticles().size(); i++){
+                        if(getArticles().get(i).getCogido() == 1){
+                      System.out.printf("%n---Articles: %d---%n%s",i,getArticles().get(i).getTitol());
+                    }
+                  }
+
+                }
+                private void Dispo(){
+                    System.out.printf("Estos son los articulos disponibles%n");
+                    for(int i=0; i<getArticles().size(); i++){
+                        if(getArticles().get(i).getCogido()==0)
+                      System.out.printf("%n---Articles: %d---%n%s",i,getArticles().get(i).getTitol());
+                    }
+
+                }
+                private void Tots(){
+                    System.out.printf("2º te mostraremos los articulos%n");
+                    for(int i=0; i<getArticles().size(); i++){
+                      System.out.printf("%n---Articles: %d---%n%s",i,getArticles().get(i).getTitol());
+                    }
+                }
+          
+          
+//</editor-fold>
+          
+
+          
+          //</editor-fold>
+          //</editor-fold>
+
+
+    
+    
+
+
+
+
+    
         
 }
-        
-    
-    
-

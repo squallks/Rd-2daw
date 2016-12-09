@@ -4,6 +4,7 @@ import cat.iesjoaquimmir.ricard.biblioteca.articles.Articles;
 import cat.iesjoaquimmir.ricard.biblioteca.usuaris.adult.Adult;
 import cat.iesjoaquimmir.ricard.biblioteca.usuaris.menor.Menor;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public abstract class Usuaris {
     
@@ -141,6 +142,7 @@ public abstract class Usuaris {
              public void agafaArticle(Articles art){
                  if(teArticle(art) == false){
                         getArticles().add(art);
+                        art.pilloart(1);
                     }else{
                      String.format("Ya tienes ese producto");
                  }
@@ -150,7 +152,8 @@ public abstract class Usuaris {
                  
                  if(getArticles().contains(art)){
                         getArticles().remove(art);
-                }
+                        art.pilloart(0);
+                   }
              }
           
              
@@ -174,11 +177,20 @@ public abstract class Usuaris {
                     return false;}
                 }
             
-            
+             @Override
+                public int hashCode() {
+                    int hash = 5;
+                    hash = 89 * hash + Objects.hashCode(this.nom);
+                    hash = 89 * hash + Objects.hashCode(this.cognom1);
+                    hash = 89 * hash + Objects.hashCode(this.cognom2);
+                    return hash;
+                }
             
 //</editor-fold>
         
 //</editor-fold>
+
+   
 
     
 

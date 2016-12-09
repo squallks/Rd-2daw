@@ -2,6 +2,7 @@
 package cat.iesjoaquimmir.ricard.biblioteca.usuaris.adult;
 
 import cat.iesjoaquimmir.ricard.biblioteca.usuaris.Usuaris;
+import java.util.Objects;
 
 
 public class Adult extends Usuaris{
@@ -91,6 +92,14 @@ public class Adult extends Usuaris{
                  }
             }    
     
+        @Override
+        public int hashCode() {
+            int hash = 3;
+            hash = 19 * hash + Objects.hashCode(this.dni);
+            return hash;
+        }
+    
+    
 //</editor-fold>
   
     
@@ -98,6 +107,8 @@ public class Adult extends Usuaris{
     
     
 //</editor-fold>
+
+
 
    
     

@@ -8,6 +8,7 @@ public abstract class Articles {
         private String titol;
         private String autor;
         private Categoria categoria;
+        private int cogido;
       
 //</editor-fold>
     
@@ -32,7 +33,17 @@ public abstract class Articles {
                 private void setCategoria(Categoria categoria) {
                     this.categoria = categoria;
                 }
-              
+                public int getCogido() {
+                    return cogido;
+                }
+                public void setCogido(int cogido) {
+                    if(cogido < 0 || cogido > 1){
+                        System.out.printf("Solo se puede poner 0 o 1");
+                    }else{
+                    this.cogido = cogido;
+                    }
+                }
+
 
 //</editor-fold>
         
@@ -42,6 +53,7 @@ public abstract class Articles {
              this.setTitol(titol);
              this.setAutor(autor);
              this.setCategoria(categoria);
+             this.setCogido(0);
          }
                 
         //</editor-fold>
@@ -55,10 +67,15 @@ public abstract class Articles {
                                 + "Categoria: %s", getTitol(), getAutor(), getCategoria()); 
           }
          
+          public void pilloart(int a){
+               this.cogido = a;
+         }
          
         //</editor-fold>
         
 //</editor-fold>
+
+ 
 
       
 }

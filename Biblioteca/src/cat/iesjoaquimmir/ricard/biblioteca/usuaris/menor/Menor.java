@@ -2,6 +2,7 @@
 package cat.iesjoaquimmir.ricard.biblioteca.usuaris.menor;
 import cat.iesjoaquimmir.ricard.biblioteca.usuaris.Usuaris;
 import cat.iesjoaquimmir.ricard.biblioteca.usuaris.adult.Adult;
+import java.util.Objects;
 
 
 public class Menor extends Usuaris{
@@ -72,17 +73,16 @@ public class Menor extends Usuaris{
                  }
             }  
  
-    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 17 * hash + Objects.hashCode(this.tutor);
+        return hash;
+    }
     
 //</editor-fold>
     
  //</editor-fold>   
-
-
-    
-
-  
-
 
     
 }

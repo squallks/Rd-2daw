@@ -7,15 +7,25 @@ import cat.iesjoaquimmir.Alumnes.model.businesslayes.entities.Moduls;
 import cat.iesjoaquimmir.Alumnes.model.businesslayes.entities.LaException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 
 public class Application {
         
-    //<editor-fold defaultstate="collapsed" desc="Menu">
+//<editor-fold defaultstate="collapsed" desc="Menu">
     
-     public static void main(String[] args){
+     public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException{
             Scanner input = new Scanner(System.in);
             
-                System.out.printf("1- NombreyEdad. 2- Nombre. 3- Nombre+Dni. 4- Nombre completo. 5- Todo. 6-Telefonos. 7-Modulos");
+                System.out.printf("1- NombreyEdad. 2- Nombre. 3- Nombre+Dni. 4- Nombre completo. 5- Todo. 6-Telefonos. 7-Modulos. 8-Fichero. 9-Fichero++");
                 int resp = input.nextInt();
              
                   switch(resp){
@@ -45,6 +55,12 @@ public class Application {
                         break;
                     case 7:
                         MODULS();
+                        break;
+                    case 8:
+                        FICHERO();
+                        break;
+                    case 9:
+                        FICHERO2();
                         break;
                     
                   }
@@ -194,10 +210,229 @@ public class Application {
                 
               }while(resp2 ==  1);
       }
+    private static void FICHERO() throws IOException{
+        File file = new File("/home/alumne/DatosAlumno.txt");
+         Scanner input = new Scanner(System.in);
+        
+        if (!file.exists()){
+            file.createNewFile();
+          }
+        
+        System.out.printf("alumnos?");
+        int tamaño = input.nextInt();
+        int i;
+        
+        for(i=0; i<tamaño; i++){
+        
+             System.out.printf("Nombre del alumno?");
+             String nom = input.next();
+             System.out.printf("1ºCognom?");
+             String cog1 = input.next();
+             System.out.printf("2ºCognom?");
+             String cog2 = input.next();
+             System.out.printf("Dni");
+             String dni = input.next();
+        
+             //<editor-fold defaultstate="collapsed" desc="writer">
+            FileWriter writer = null;
+          
+            writer = new FileWriter ("/home/alumne/DatosAlumno.txt",true);
+                        
+               writer.write(nom);
+               writer.write(cog1);
+               writer.write(cog2);
+               writer.write(dni);
+               writer.close();
+        }
+             
+             
+//</editor-fold>
+             //<editor-fold defaultstate="collapsed" desc="reader">
+
+        FileReader reader = null;
+        
+        reader = new FileReader("/home/alumne/DatosAlumno.txt");
+            
+            int charsLlegits;
+            char [] buffer = new char[1024];
+            do{
+                charsLlegits = reader.read(buffer);
+                
+                for(i=0; i<charsLlegits; i++){
+                    System.out.print(buffer[i]);
+                }
+                
+            }while (charsLlegits != -1);
+            reader.close();
+
+
+
+//</editor-fold>
+               
+               
+               
+            
+        
+        
+        
+    }
+    private static void FICHERO2() throws IOException, FileNotFoundException, ClassNotFoundException{
+  
+         Scanner input = new Scanner(System.in);
+         int resp;
+
+         //<editor-fold defaultstate="collapsed" desc="Creacion de carpeta/fichero">
+          
+          System.out.printf("%n Como quieres nombrar al fichero? %n");
+         String filename = input.nextLine();
+         
+         System.out.printf("%n En que carpeta lo quieres crear? %n");
+         String directorior = input.nextLine();
+         directorior = (File.separator + "home" + File.separator + "alumne" + File.separator + directorior);
+         
+         String filefinal = (directorior + File.separator + filename + ".txt");
+                
+        File directorio = new File(directorior);
+        
+        if(!directorio.exists()){
+            directorio.mkdir();   
+            System.out.printf("%n El directorio deseado acaba de nacer %n");
+        }else{
+            if(directorio.isDirectory()){
+                System.out.printf("%n El directorio ya estaba creado %n");
+            }else{
+                 System.out.printf("%n Ese nombre ya esta en uso para un fichero %n Usa otro porfavor %n");
+            }
+            
+        }
+           
+        File file = new File(filefinal);
+        if (!file.exists()){
+                file.createNewFile();
+                System.out.printf("%n El Fichero deseado acaba de nacer %n");
+        }else{
+                if(directorio.isFile()){
+                    System.out.printf("%n El fichero ya estaba creado %n");
+                }else{
+                     System.out.printf("%n Deseas sobrescribir el fichero deseado? %n");
+                     System.out.printf("%n Si / No%n");
+                     if(input.next().equalsIgnoreCase("S")){
+                         file.delete();
+                     }
+                }
+          }
+         
+        
+        
+        
+         
+         
+//</editor-fold>
+             //<editor-fold defaultstate="collapsed" desc="menu">
+           do {
+             System.out.printf("%n 1- Introducir Alumnos. 2-Lectura %n");
+                 resp = input.nextInt();
+               
+                  switch(resp){ 
+                      case 1:
+                          AltaMasiva(filefinal);
+                          break;
+                      case 2:
+                          LecturaMasiva(filefinal);
+                          break;
+                  }
+            
+            } while (resp != 0);
+            
+            
+            
+//</editor-fold>
+       
+    }
     
 //</editor-fold>
 
     
+   public static void AltaMasiva(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
     
+        String FILE_NAME = filename;
+        ArrayList<Alumne> list = new ArrayList<>();
+        
+        Scanner input = new Scanner(System.in);
+        int i;
+        
+        
+        System.out.printf("Dime cuantos quieres?");
+         int tamaño = input.nextInt();
+         
+        for(i=0; i<tamaño; i++){
+       
+               System.out.printf("%nDime tu nombre%n");
+               String nom = input.next();
+               System.out.printf("%nDime tu edad%n");
+               int edat = input.nextInt();
+               System.out.printf("%nDime tu dni%n");
+               String dni = input.next();
+               System.out.printf("%nDime tu 1ºCognom%n");
+               String cog1 = input.next();
+               System.out.printf("%nDime tu 2ºCognom%n");
+               String cog2 = input.next();
+               System.out.printf("%nDime tu Calle%n");
+               String calle = input.next();
+               System.out.printf("%nDime tu Piso si tienes%n");
+               int pis = input.nextInt();
+               System.out.printf("%nDime tu Numero%n");
+               int numero = input.nextInt();
+               System.out.printf("%nDime tu Codigo Postal%n");
+               String copo = input.next();
+               System.out.printf("%nDime tu Poblacion%n");
+               String pob = input.next();
+               System.out.printf("%nDime tu Provincia%n");
+               String pro = input.next();
+               Domicili dom1 = new Domicili(calle,pis,numero,copo,pob,pro);
+               Alumne al5 = new Alumne(nom, dni, edat, cog1, cog2, dom1);
+               System.out.printf("%s %n ", al5.getNombrecompleto());
+               System.out.printf("%s %n ", dom1.getDomicilio());
+               list.add(al5);
+        }
+            
+        ObjectOutputStream ObjectOutput = null;
+        
+        
+            ObjectOutput = new ObjectOutputStream(new FileOutputStream(FILE_NAME, true));
+       
+            ObjectOutput.writeObject(list);
+            
+            System.out.printf("S'ha generat el ficher d'alumnes");
+            ObjectOutput.close();
+      
+           
+            
+            
+            
+           
+             
+   }
+   
+   public static void LecturaMasiva(String filename) throws IOException, ClassNotFoundException{
+       
+        String FILE_NAME = filename;
+       
+        ObjectInputStream ObjectInput = null;
+       
+        ObjectInput = new ObjectInputStream (new FileInputStream(FILE_NAME));
+        
+        ArrayList<Alumne> list = (ArrayList<Alumne>) ObjectInput.readObject();
+        
+        
+        
+        for(int i=0;i<list.size();++i){
+            System.out.printf("%n %s --> ", list.get(i));
+        }
+       ObjectInput.close();
+       
+       
+   }
+   
 
 }

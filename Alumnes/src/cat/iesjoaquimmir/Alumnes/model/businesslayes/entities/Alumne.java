@@ -1,8 +1,9 @@
 
 package cat.iesjoaquimmir.Alumnes.model.businesslayes.entities;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Alumne {
+public class Alumne implements Serializable{
     
     //<editor-fold defaultstate="collapsed" desc="Atributs">
     //<editor-fold defaultstate="collapsed" desc="Objecte">
@@ -135,13 +136,18 @@ public class Alumne {
                             return false;
                         }
                     }
-                    
+                  
+                    @Override
+                    public String toString() {
+                    return String.format("%n Nom: %s %n 1ºCognom: %s %n 2ºCognom: %s %n Edat: %d %n Domicili: %n %s", getNom(),getCognom1(),getCognom2(),getEdat(),getDomicilio().toString());
+                    }
                     
 //</editor-fold>
-            
-            
         
+              
     //</editor-fold>
+
+    
 
     
  }

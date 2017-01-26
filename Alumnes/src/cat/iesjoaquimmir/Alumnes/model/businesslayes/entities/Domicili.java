@@ -1,8 +1,10 @@
 
 package cat.iesjoaquimmir.Alumnes.model.businesslayes.entities;
 
+import java.io.Serializable;
 
-public class Domicili {
+
+public class Domicili implements Serializable{
  
     //<editor-fold defaultstate="collapsed" desc="Atributs">
     //<editor-fold defaultstate="collapsed" desc="objeto">
@@ -118,12 +120,17 @@ public class Domicili {
             return String.format("Mi domicilio es: '%s', '%d', '%d', '%s', '%s', '%s' ", getCarrer(), getNumero(), getPis(), getCodipostal(), getPoblacio(), getProvincia());
         }
         
-        
+        @Override
+        public String toString() {
+          return String.format("Mi domicilio es: '%s', '%d', '%d', '%s', '%s', '%s' ", getCarrer(), getNumero(), getPis(), getCodipostal(), getPoblacio(), getProvincia());
+    }
 //</editor-fold>
     
     
     
 //</editor-fold>
+
+    
 
    
      
